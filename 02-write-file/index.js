@@ -1,8 +1,19 @@
-const fs = require('fs')
+let fs = require('fs')
+const { exit } = require('process')
 const readline = require("readline")
 
-let file = fs.open('file.txt')
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout, })
 
-let writeStream = fs.createWriteStream(file)
+function receiveInput() {
+  rl.question("what is your name?", function(name) {
+    console.log(name)
+    // if (name === "exit") exit("bye")
+    fs.appendFile("./file.txt", name + "\n", function(error) {
+      if (error) console.error(error)
+    })
+    receiveInput()
+    // rl.close()
+  })
+}
 
-
+receiveInput()
