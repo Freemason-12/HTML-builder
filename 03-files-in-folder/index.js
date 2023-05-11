@@ -12,4 +12,3 @@ fs.readdirSync(`${__dirname}/secret-folder/`, (error, files) => {
     console.log(`Last modified at ${fsr.mtime}\n`)
   })
 })
-
